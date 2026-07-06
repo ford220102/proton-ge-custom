@@ -27,11 +27,13 @@ jobs:
       with:
         fetch-depth: 0
         fetch-tags: true
+
     - name: Tags
       shell: bash
       run: |
         git fetch origin +refs/tags/*:refs/tags/*
-       - name: Create Release
+
+    - name: Create Release
       id: create
       shell: bash
       run: |
@@ -47,7 +49,7 @@ jobs:
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+
   upload:
     name: Upload
     needs: release
